@@ -42,17 +42,13 @@ class VeoProvider(BaseProvider):
                 self.api_key = settings.GEMINI_API_KEY
                 genai.configure(api_key=self.api_key)
                 
-                # Verify model exists
-                try:
-                    model = genai.get_model(self.model_name)
-                    self._initialized = True
-                    self.logger.info(
-                        f"Veo provider initialized via Gemini API "
-                        f"(model: {model.display_name}, methods: {model.supported_generation_methods})"
-                    )
-                except Exception as model_error:
-                    self.logger.warning(f"Could not verify model: {model_error}")
-                    self._initialized = True  # Still try, might work via REST API
+                # Note: Veo uses REST API (predictLongRunning), not SDK model methods
+                # Model verification via SDK may fail, but REST API works fine
+                self._initialized = True
+                self.logger.info(
+                    f"Veo provider initialized via REST API "
+                    f"(model: {self.model_name}, supports I2V with Veo 3.1)"
+                )
             else:
                 self.logger.error("GEMINI_API_KEY not set")
                 self._initialized = False

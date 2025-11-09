@@ -15,4 +15,16 @@ data/
 logs/
 .vscode/
 .idea/
+*.log
+.DS_Store
+*.swp
+*.swo
+*~
+.pytest_cache
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+.dockerignore
 
