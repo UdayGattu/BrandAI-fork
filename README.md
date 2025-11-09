@@ -50,4 +50,3 @@ See `ARCHITECTURE.md` for complete architecture documentation.
 ## License
 
 MIT
-
