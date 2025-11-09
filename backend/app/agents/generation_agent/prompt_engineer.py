@@ -71,23 +71,30 @@ class PromptEngineer:
         self,
         base_prompt: str,
         brand_kit: Optional[Dict] = None,
-        num_variations: int = 3,
+        num_variations: int = 1,
         media_type: str = "image"
     ) -> List[str]:
         """
-        Generate multiple advertisement prompt variations.
+        Generate advertisement prompt (single variation).
         
         Args:
             base_prompt: User-provided base prompt (product description, ad concept)
             brand_kit: Brand kit information
-            num_variations: Number of variations to generate (default: 3)
+            num_variations: Number of variations to generate (default: 1)
             media_type: Media type ('image' or 'video')
         
         Returns:
-            List of advertisement prompt variations
+            List with single advertisement prompt
         """
         variations = []
         
+        # For single variation, create one optimized prompt
+        if num_variations == 1:
+            optimized_prompt = self.create_prompt(base_prompt, brand_kit, media_type)
+            variations.append(optimized_prompt)
+            return variations
+        
+        # For multiple variations (if needed in future)
         # Advertisement-specific style variations
         ad_styles = [
             "professional product advertisement with clear call-to-action",

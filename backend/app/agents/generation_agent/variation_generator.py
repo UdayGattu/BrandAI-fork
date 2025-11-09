@@ -24,7 +24,7 @@ class VariationGenerator:
         prompts: List[str],
         media_type: str,
         run_id: str,
-        num_variations: int = 3,
+        num_variations: int = 1,
         **kwargs
     ) -> List[Dict]:
         """
@@ -34,7 +34,7 @@ class VariationGenerator:
             prompts: List of advertisement prompts (should be 3 variations)
             media_type: Media type ('image' or 'video')
             run_id: Run ID for organizing files
-            num_variations: Number of variations to generate (default: 3)
+            num_variations: Number of variations to generate (default: 1)
         
         Returns:
             List of variation results:
