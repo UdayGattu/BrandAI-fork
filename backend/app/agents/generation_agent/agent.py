@@ -28,7 +28,7 @@ class GenerationAgent(BaseAgent):
         media_type: str,
         brand_kit: Optional[Dict] = None,
         run_id: str = None,
-        num_variations: int = 3,
+        num_variations: int = 1,
         **kwargs
     ) -> Dict:
         """
@@ -39,7 +39,7 @@ class GenerationAgent(BaseAgent):
             media_type: Media type ('image' or 'video')
             brand_kit: Brand kit information
             run_id: Run ID for organizing files
-            num_variations: Number of variations to generate
+            num_variations: Number of variations to generate (default: 1)
             **kwargs: Additional arguments
         
         Returns:
@@ -48,8 +48,8 @@ class GenerationAgent(BaseAgent):
         self.log_start("ad_generation", run_id=run_id, media_type=media_type)
         
         try:
-            # Generate advertisement prompt variations
-            self.logger.info("Creating advertisement prompt variations")
+            # Generate advertisement prompt (single variation)
+            self.logger.info("Creating advertisement prompt")
             prompt_variations = self.prompt_engineer.generate_variations(
                 base_prompt=prompt,
                 brand_kit=brand_kit,
@@ -57,10 +57,10 @@ class GenerationAgent(BaseAgent):
                 media_type=media_type
             )
             
-            self.logger.info(f"Generated {len(prompt_variations)} prompt variations")
+            self.logger.info(f"Generated {len(prompt_variations)} prompt variation(s)")
             
-            # Generate ad variations
-            self.logger.info(f"Generating {num_variations} {media_type} variations")
+            # Generate ad (single variation)
+            self.logger.info(f"Generating {num_variations} {media_type} ad")
             
             # Extract logo/product images from brand_kit if available
             logo_image = None
