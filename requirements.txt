@@ -5,7 +5,9 @@ python-multipart==0.0.6
 
 # Google Cloud
 google-cloud-aiplatform==1.38.0
+google-cloud-storage==2.14.0  # For downloading Veo videos from GCS
 google-generativeai==0.3.0
+google-genai==0.2.0  # For image/video generation (Nano Banana, Veo)
 
 # LangGraph
 langgraph==0.0.20
@@ -25,6 +27,7 @@ pydantic==2.5.0
 python-dotenv==1.0.0
 aiofiles==23.2.1
 httpx==0.25.0
+requests==2.31.0  # For REST API calls (Veo)
 
 # Logging
 loguru==0.7.2

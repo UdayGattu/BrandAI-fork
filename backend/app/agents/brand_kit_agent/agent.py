@@ -96,6 +96,7 @@ class BrandKitAgent(BaseAgent):
         brand_kit = {
             "extracted_at": datetime.now(timezone.utc).isoformat(),
             "logo": {},
+            "product": {},
             "colors": {},
             "website": {}
         }
@@ -105,6 +106,16 @@ class BrandKitAgent(BaseAgent):
             self.logger.info(f"Extracting logo from: {brand_logo_path}")
             logo_info = self.logo_extractor.analyze_logo_file(brand_logo_path)
             brand_kit["logo"] = logo_info
+            # Store logo file path for later use in generation
+            brand_kit["logo"]["file_path"] = str(brand_logo_path)
+        
+        # Store product image path for later use in generation
+        if product_image_path and product_image_path.exists():
+            brand_kit["product"] = {
+                "file_path": str(product_image_path),
+                "extracted": True
+            }
+            self.logger.info(f"Stored product image path: {product_image_path}")
         
         # Extract colors from logo and product image
         color_sources = []
