@@ -23,6 +23,7 @@ class ImagenProvider(BaseProvider):
         # Use Nano Banana model for image generation
         self.model_name = "gemini-2.5-flash-image"
         self.client = None
+        self._initialized = False
         self._initialize()
     
     def _initialize(self):
@@ -30,11 +31,14 @@ class ImagenProvider(BaseProvider):
         try:
             if settings.GEMINI_API_KEY:
                 self.client = genai.Client(api_key=settings.GEMINI_API_KEY)
+                self._initialized = True
                 self.logger.info("Imagen provider initialized via Gemini API (Nano Banana)")
             else:
                 self.logger.error("GEMINI_API_KEY not set")
+                self._initialized = False
         except Exception as e:
             self.logger.error(f"Error initializing Imagen provider: {e}")
+            self._initialized = False
     
     def generate(
         self,

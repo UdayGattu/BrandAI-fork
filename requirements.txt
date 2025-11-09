@@ -10,7 +10,7 @@ google-generativeai==0.3.0
 google-genai==0.2.0  # For image/video generation (Nano Banana, Veo)
 
 # LangGraph
-langgraph>=0.2.0
+langgraph==1.0.2
 
 # Image/Video Processing
 opencv-python==4.8.1.78
@@ -23,10 +23,10 @@ torch==2.2.0
 torchvision==0.17.0
 
 # Utilities
-pydantic==2.5.0
+pydantic>=2.7.4,<3.0.0
 python-dotenv==1.0.0
 aiofiles==23.2.1
-httpx==0.25.0
+httpx>=0.25.2
 requests==2.31.0  # For REST API calls (Veo)
 
 # Logging
